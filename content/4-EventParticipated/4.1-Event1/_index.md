@@ -10,7 +10,7 @@ pre: " <b> 4.1. </b> "
 
 ### Event Information
 
-- **Time:** 09:00, August 13, 2025
+- **Time:** 09:00, July 11, 2026
 - **Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 - **Role:** Attendee
 

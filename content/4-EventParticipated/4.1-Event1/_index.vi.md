@@ -10,7 +10,7 @@ pre: " <b> 4.1. </b> "
 
 ### Thông tin sự kiện
 
-- **Thời gian:** 09:00 ngày 13/08/2025
+- **Thời gian:** 09:00 ngày 11/07/2026
 - **Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, Thành phố Hồ Chí Minh
 - **Vai trò:** Người tham dự
 

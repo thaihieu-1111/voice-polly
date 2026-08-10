@@ -26,7 +26,7 @@ During my internship, I participated in two events. Each one was a memorable exp
 ### [Event 1](4.1-Event1/)  
 &emsp;**Event Name:** AWS Cloud, Monitoring, and Security Agent  
 
-&emsp;**Date & Time:** 09:00, August 13, 2025  
+&emsp;**Date & Time:** 09:00, July 25, 2026 
 
 &emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
 
