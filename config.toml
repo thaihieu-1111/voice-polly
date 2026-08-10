@@ -1,5 +1,5 @@
-baseURL = "https://hieuthaihcmut.github.io/fcj-workshop-template/"
-relativeURLs = true
+baseURL = "https://thaihieu-1111.github.io/voice-polly/"
+relativeURLs = false
 canonifyURLs = false
 defaultContentLanguage = "en"
 
