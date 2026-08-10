@@ -28,6 +28,8 @@ Mở CloudFormation stack `polly-voice-api` → **Resources** và **Outputs**, g
 - Amplify app nếu cũng dừng frontend.
 
 
+![Danh sách tài nguyên cần xóa](/images/5-Workshop/5.6-Cleanup/01-resource-inventory.png)
+
 ## 2. Xóa dữ liệu trong S3 bucket
 
 Stack sử dụng `DeletionPolicy: Retain`, vì vậy bucket có thể được giữ lại sau khi
@@ -41,7 +43,7 @@ xóa stack. Bucket cũng không thể xóa khi vẫn còn object hoặc version.
 
 Chưa xóa bucket ở bước này nếu muốn CloudFormation gỡ stack trước; chỉ làm rỗng.
 
-![Làm rỗng S3 bucket](/images/5-Workshop/5.6-Cleanup/delete-s3.png)
+![Làm rỗng S3 bucket](/images/5-Workshop/5.6-Cleanup/02-empty-s3-bucket.png)
 
 ## 3. Xóa CloudWatch alarm
 
@@ -52,7 +54,7 @@ Chưa xóa bucket ở bước này nếu muốn CloudFormation gỡ stack trư�
 Dashboard hoặc log group tạo thủ công không nhất thiết được CloudFormation xóa.
 Xóa chúng nếu không còn dùng.
 
-![Xóa CloudWatch alarm](/images/5-Workshop/5.6-Cleanup/1.png)
+![Xóa CloudWatch alarm](/images/5-Workshop/5.6-Cleanup/03-delete-alarms.png)
 
 
 ## 4. Xóa CloudFormation stack
@@ -131,5 +133,7 @@ Kiểm tra:
 - Không còn Transcribe job đang chạy.
 - Amplify/Cognito đã được xử lý theo phạm vi mong muốn.
 - **Billing and Cost Management** không còn chi phí bất thường.
+
+![Hoàn tất dọn dẹp](/images/5-Workshop/5.6-Cleanup/07-cleanup-complete.png)
 
 
