@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 5.4.3. </b> "
 ---
 
-# Verify the Deployed Backend
-
 This section verifies that CloudFormation created the correct resources and that
 requests can flow from API Gateway to Lambda, Amazon Polly, Amazon S3, and
 Amazon DynamoDB.
