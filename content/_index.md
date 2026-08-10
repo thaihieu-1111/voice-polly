@@ -31,7 +31,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 01/06/2026 to 15/08/2026
 
-![Your profile picture](image.png)
+![Your profile picture](https://super-chickens-aws.github.io/dinhhhiuu/images/avatar.png)
 
 ### Report Content
 

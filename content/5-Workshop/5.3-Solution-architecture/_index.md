@@ -1,4 +1,4 @@
-﻿+++
++++
 title = '5.3 Solution Architecture'
 weight = 3
 
@@ -35,7 +35,7 @@ User authentication is handled by **Amazon Cognito** before requests are allowed
 
 > **Architecture Diagram:** Polly Voice Solution Architecture
 
-![Architecture Diagram](/images/worklog53.png)
+![Architecture Diagram](https://super-chickens-aws.github.io/dinhhhiuu/images/worklog53.png)
 
 ---
 

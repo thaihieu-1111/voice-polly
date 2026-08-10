@@ -1,4 +1,4 @@
-﻿+++
++++
 title = '2. Proposal'
 weight = 2
 
@@ -70,7 +70,7 @@ Users simply sign in, then either enter text to generate speech or upload an aud
 
 ## 3. Solution Architecture
 
-![Architecture Diagram](/images/worklog53.png)
+![Architecture Diagram](https://super-chickens-aws.github.io/dinhhhiuu/images/worklog53.png)
 
 ### AWS Services Used
 

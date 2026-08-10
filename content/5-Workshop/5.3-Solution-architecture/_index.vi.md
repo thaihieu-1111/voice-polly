@@ -1,4 +1,4 @@
-﻿+++
++++
 title = '5.3 Kiến trúc giải pháp'
 weight = 3
 
@@ -35,7 +35,7 @@ Việc xác thực người dùng được thực hiện bởi **Amazon Cognito*
 
 > **Hình minh họa:** Kiến trúc tổng thể Polly Voice
 
-![Mô tả ảnh](/images/worklog53.png)
+![Mô tả ảnh](https://super-chickens-aws.github.io/dinhhhiuu/images/worklog53.png)
 
 ---
 

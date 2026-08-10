@@ -1,4 +1,4 @@
-﻿+++
++++
 title = '2. Bản đề xuất'
 weight = 2
 
@@ -70,7 +70,7 @@ Người dùng chỉ cần đăng nhập, sau đó có thể nhập văn bản �
 
 ## 3. Kiến trúc giải pháp
 
-![Mô tả ảnh](/images/worklog53.png)
+![Mô tả ảnh](https://super-chickens-aws.github.io/dinhhhiuu/images/worklog53.png)
 
 ### Dịch vụ AWS sử dụng
 

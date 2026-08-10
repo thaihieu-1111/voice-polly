@@ -25,7 +25,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 01/06/2026 đến ngày 15/08/2026
 
-![Ảnh đại diện của bạn](image.png)
+![Ảnh đại diện của bạn](https://super-chickens-aws.github.io/dinhhhiuu/images/avatar.png)
 
 
 
