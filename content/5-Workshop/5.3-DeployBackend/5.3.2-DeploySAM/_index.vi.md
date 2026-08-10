@@ -100,7 +100,7 @@ backend/.aws-sam/build/
 Tên S3 bucket phải duy nhất trên toàn cầu. Việc thêm Account ID giúp giảm khả
 năng trùng tên.
 
-![Backend deployment parameters](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/06-deployment-parameters.png)
+![Backend deployment parameters](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/1.png)
 
 6. Cấu hình trực tiếp tham số triển khai vào file `samconfig.toml`:
 
@@ -122,7 +122,7 @@ parameter_overrides = "MediaBucketName=\"polly-voice-media-<ACCOUNT_ID>-eu-north
 region = "eu-north-1"
 ```
 
-![Cloud](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/1.image)
+![Cấu hình samconfig.toml](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/1.png)
 
 7. Thực hiện triển khai Backend:
 

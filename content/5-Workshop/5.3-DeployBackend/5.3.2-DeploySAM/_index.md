@@ -108,7 +108,7 @@ OneDrive directory when necessary, and run `sam build --no-cached` again.
 An S3 bucket name must be globally unique. Adding the AWS Account ID reduces the
 chance of a naming conflict.
 
-![Backend deployment parameters](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/06-deployment-parameters.png)
+![Backend deployment parameters](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/1.png)
 
 6. Configure deployment parameters directly in `samconfig.toml`:
 
@@ -165,9 +165,9 @@ MediaBucket
 HistoryTable
 ```
 
-![SAM deployment completed](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/09-deployment-complete.png)
+![SAM deployment completed](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/2.png)
 
-![CloudFormation stack](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/10-cloudformation-stack.png)
+![CloudFormation stack](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/2.png)
 
 9. Record `ApiUrl` from:
 
