@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = '5.3 Kiến trúc giải pháp'
 weight = 3
 
@@ -35,7 +35,7 @@ Việc xác thực người dùng được thực hiện bởi **Amazon Cognito*
 
 > **Hình minh họa:** Kiến trúc tổng thể Polly Voice
 
-![Mô tả ảnh](https://super-chickens-aws.github.io/dinhhhiuu/images/worklog53.png)
+![Mô tả ảnh](/images/worklog53.png)
 
 ---
 
@@ -313,3 +313,4 @@ Kiến trúc này rất phù hợp với các ứng dụng cloud-native có quy 
 Đến thời điểm này, chúng ta đã hiểu được kiến trúc tổng thể của hệ thống, vai trò của từng dịch vụ AWS cũng như hai luồng xử lý chính của ứng dụng: **Text-to-Speech** sử dụng **Amazon Polly** và **Speech-to-Text** sử dụng **Amazon Transcribe**.
 
 Trong phần tiếp theo, chúng ta sẽ bắt đầu triển khai hệ thống backend bằng cách cấu hình Amazon Cognito trên AWS Management Console.
+

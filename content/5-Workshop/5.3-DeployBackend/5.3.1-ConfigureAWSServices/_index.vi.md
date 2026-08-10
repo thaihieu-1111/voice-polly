@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cấu hình dịch vụ AWS cho Backend"
 date: 2026-07-30
 weight: 1
@@ -21,81 +21,81 @@ tạo trùng: Console cho bản thử nghiệm hoặc SAM/CloudFormation cho h�
 
 1. Truy cập [AWS Lambda](https://eu-north-1.console.aws.amazon.com/lambda/home?region=eu-north-1#/functions) và chọn **Create function**.
 
-![Lambda create function](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/createfunction.png)
+![Lambda create function](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/createfunction.png)
 
 2. Tại trang **Create function**, chọn **Author from scratch**. Đặt tên funtion, ví dụ `polly-voice`. Chọn runtime là Nodejs 2x.x . Chọn architecture `arm64` để tiết kiệm chi phí. Cuối cùng là nhấn **Create function**.
 
-![Lambda author from scratch](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.2.png)
+![Lambda author from scratch](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.2.png)
 
 ## 2. Tạo S3 bucket lưu media
 
 1. Truy cập Amazon [S3](https://eu-north-1.console.aws.amazon.com/s3/home?region=eu-north-1) và chọn **Create bucket**.
 
-![S3 create bucket](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.3.png)
+![S3 create bucket](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.3.png)
 
 2. Chọn **Account Regional namespace** trong **Bucket namespace**. Sau đó nhập tên dự án, ví dụ: `polly-voice-media-<account-id>-eu-north-1`. Giữ nguyên **Block all public access**. Bật **Bucket Versioning** nếu muốn khôi phục file. Chọn **Server-side encryption with Amazon S3 managed keys (SSE-S3)**. Cuối cùng nhấn **Create bucket**.
 
-![S3 bucket configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.4.png)
-![Bucket versioning](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.5.png)
-![S3 bucket encryption](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.6.png)
+![S3 bucket configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.4.png)
+![Bucket versioning](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.5.png)
+![S3 bucket encryption](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.6.png)
 
 ## 3. Cấu hình Lamda Trigger cho S3 bucket
 1. Tại trang polly-voice Lambda function, chọn **Add trigger**.
-![S3 trigger](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.10.png)
+![S3 trigger](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.10.png)
 2. Tìm và chọn **S3** trong danh sách trigger. Sau đó chọn **Add**.
-![S3 trigger configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.11.png)
+![S3 trigger configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.11.png)
 3. Tại trang cấu hình trigger. Chọn bucket nguồn: `polly-voice-media-<account-id>-eu-north-1`. Chọn **All object create events**. Đánh dấu vào ô Xác nhận **I acknowledge that this may result in the invocation of my function when objects are created in the bucket**. Cuối cùng nhấn **Add**.
-![S3 trigger configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.12.png)
+![S3 trigger configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.12.png)
 
 ## 4. Tạo IAM Policy cho Lambda
 1. Tại trang polly-voice Lambda function, chọn **Configuration**. Sau đó chọn **Permissions**. Chọn vào role gắn với function.
-![Lambda permissions](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.1.3.13.png)
+![Lambda permissions](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.1.3.13.png)
 2. Tại trang IAM role, chọn **Add permissions**và chọn **Create inline policy**.
-![Lambda inline policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.14.png)
+![Lambda inline policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.14.png)
 3. Tại trang **Create policy**, chọn **Choose a service** và tìm kiếm **S3**. Chọn **S3**.
-![S3 service](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.15.png)
+![S3 service](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.15.png)
 4. Tại ô tìm kiếm **Filter actions**, nhập `GetObject` và chọn **GetObject**. Tương tự cho `DeleteObject`. Sau đó chọn **Add resources**.
 
-![S3 actions](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.19.png)
+![S3 actions](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.19.png)
 5. Chọn **Add ARN** trong mục `object` trong **Resorces**. 
-![S3 resources](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.17.png)
+![S3 resources](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.17.png)
 6. Tại trang **Add ARN**, chọn bucket nguồn: `polly-voice-media-<account-id>-eu-north-1`. Chọn **object** và nhập `*` để áp dụng cho tất cả object trong bucket. Cuối cùng nhấn **Add**.
-![S3 add ARN](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.18.png)
+![S3 add ARN](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.18.png)
 7. Chọn **+Add more permissions** và làm tương tự bước trên cho hành động `PutObject`. Sau đó nhấn **Next**.
-![S3 policy review](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.16.png)
+![S3 policy review](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.16.png)
 8. Nhập tên policy, ví dụ: `polly-voice-s3-access`. Cuối cùng nhấn **Create policy**.
-![S3 policy name](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.20.png)
+![S3 policy name](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.20.png)
 
 ## 5. Tạo DynamoDB table lưu lịch sử
 
 1. Mở [Amazon DynamoDB](https://eu-north-1.console.aws.amazon.com/dynamodb/home?region=eu-north-1#tables) và chọn **Create table**.
-![DynamoDB create table](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.7.png)
+![DynamoDB create table](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.7.png)
 2. Nhập các thông tin cho Table name: `polly-voice-history`. Partition key: `PK`, kiểu **String**. Sort key: `SK`, kiểu **String**. 
-![DynamoDB table configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.8.png)
+![DynamoDB table configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.8.png)
 
 3. Chọn vào **Customize settings** để cấu hình thêm. Chọn **DynamoDB Standard** cho **Table class** và **On-demand** cho **Read/write capacity mode**. Bật **Point-in-time recovery** để có thể khôi phục dữ liệu trong 35 ngày. Bật **Encryption at rest** với **AWS owned key**. Cuối cùng nhấn **Create table**.
-![DynamoDB table settings](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.9.png)
+![DynamoDB table settings](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.9.png)
 
 4. Chờ đến khi trạng thái của bảng chuyển thành **Active**. Sau đó mở table `polly-voice-history`.
-![DynamoDB table active](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.21.png)
+![DynamoDB table active](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.21.png)
 
 5. Chọn tabs **Indexes** và chọn **Create index**. 
-![Index configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.22.png)
+![Index configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.22.png)
 6. Nhập `EntityIndex` cho **Index name**. Nhập `entityID` cho **Partition key**. Các thuộc tính khác giữ nguyên. Cuối cùng nhấn **Create index**.
-![Index configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.23.png)
+![Index configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.23.png)
 
 ## 6. Tạo Lambda function để ghi dữ liệu vào DynamoDB
 
 ### 6.1. Cấp quyền DynamoDB cho Lambda
 
 1. Mở [AWS Lambda](https://eu-north-1.console.aws.amazon.com/lambda/home?region=eu-north-1#/functions) và chọn function `polly-voice`.
-![Lambda function](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.24.png)
+![Lambda function](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.24.png)
 
 2. Chọn tabs **Configuration**, sau đó chọn **Permissions**.Trong phần **Execution role**, chọn tên IAM role đang được gắn với Lambda.
-![Lambda permissions](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.25.png)
+![Lambda permissions](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.25.png)
 
 3. Tại trang IAM role, chọn **Add permissions** → **Create inline policy**.
-![Lambda inline policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.26.png)
+![Lambda inline policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.26.png)
 
 4. Chọn tab **JSON** và nhập policy sau:
 
@@ -122,13 +122,13 @@ tạo trùng: Console cho bản thử nghiệm hoặc SAM/CloudFormation cho h�
 }
 ```
 
-![Lambda DynamoDB policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.27.png)
+![Lambda DynamoDB policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.27.png)
 5. Chọn **Next**, đặt tên `polly-voice-dynamodb-access` và chọn **Create policy**.
-![IAM policy cho DynamoDB](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.33.png)
+![IAM policy cho DynamoDB](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.33.png)
 
 ### 6.2. Cấu hình biến môi trường
 1. Trong Lambda function `polly-voice`, chọn tabs **Configuration**. Sau đó chọn **Environment variables**.
-![Lambda environment variables](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.28.png)
+![Lambda environment variables](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.28.png)
 2. Sau đó chọn **Edit** và thêm biến môi trường:
 | Tên biến | Giá trị ví dụ| Ý nghĩa |
 |---|---|---|
@@ -138,12 +138,12 @@ tạo trùng: Console cho bản thử nghiệm hoặc SAM/CloudFormation cho h�
 
 Sau khi thêm xong, nhấn **Save**.
 
-![Lambda environment variables saved](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.29.png)
+![Lambda environment variables saved](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.29.png)
 
 ### 6.3. Viết mã Lambda
 
 1. Mở Lambda function `polly-voice`. Chọn tab **Code**.Trong phần **Code source**, mở file `index.mjs`.
-![Lambda code editor](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.30.png)
+![Lambda code editor](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.30.png)
 2. Thay nội dung mặc định bằng đoạn mã sau:
 
 ```javascript
@@ -306,21 +306,21 @@ export const handler = async (event) => {
 };
 ```
 
-![Lambda code editor](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.31.png)
+![Lambda code editor](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.31.png)
 
 3. Chọn **Deploy** để lưu phiên bản mã nguồn mới.
 
-![Deploy Lambda code](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.30.png)
+![Deploy Lambda code](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.30.png)
 ## 7. Kết nối Lambda với Amazon Polly
 ### 7.1. Cấp quyền Amazon Polly
 
 1. Mở [AWS Lambda](https://eu-north-1.console.aws.amazon.com/lambda/home?region=eu-north-1#/functions) và chọn function `polly-voice`.
-![Lambda function](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.24.png)
+![Lambda function](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.24.png)
 
 2. Chọn tabs **Configuration**, sau đó chọn **Permissions**.Trong phần **Execution role**, chọn tên IAM role đang được gắn với Lambda.
-![Lambda permissions](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.25.png)
+![Lambda permissions](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.25.png)
 3. Tại trang IAM role, chọn **Add permissions** → **Create inline policy**.
-![Lambda inline policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.26.png)
+![Lambda inline policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.26.png)
 4. Chọn tab **JSON** và thêm policy:
 ```json
 {
@@ -338,11 +338,11 @@ export const handler = async (event) => {
   ]
 }
 ```
-![Lambda Polly policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.32.png)
+![Lambda Polly policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.32.png)
 
 5. Chọn **Next**, đặt tên `polly-voice-polly-access` và chọn **Create policy**.
 
-![IAM policy cho Amazon Polly](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.34.png)
+![IAM policy cho Amazon Polly](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.34.png)
 ### 7.2. Bổ sung mã kết nối Polly
 
 Trong file `index.mjs`, bổ sung các import:
@@ -451,18 +451,18 @@ audioFileSize: {
 Lambda tạo sau khi upload audio chứ không nhận trực tiếp từ frontend.
 
 6. Chọn **Deploy** để lưu phiên bản mã nguồn mới.
-![Deploy Lambda code](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.35.png)
+![Deploy Lambda code](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.35.png)
 
 ## 8. Kết nối Lambda với Amazon Transcribe
 ### 8.1. Cấp quyền Amazon Transcribe
 
 1. Mở [AWS Lambda](https://eu-north-1.console.aws.amazon.com/lambda/home?region=eu-north-1#/functions) và chọn function `polly-voice`.
-![Lambda function](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.24.png)
+![Lambda function](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.24.png)
 
 2. Chọn tabs **Configuration**, sau đó chọn **Permissions**.Trong phần **Execution role**, chọn tên IAM role đang được gắn với Lambda.
-![Lambda permissions](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.25.png)
+![Lambda permissions](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.25.png)
 3. Tại trang IAM role, chọn **Add permissions** → **Create inline policy**.
-![Lambda inline policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.26.png)
+![Lambda inline policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.26.png)
 4. Chọn tab **JSON** và thêm policy:
 ```json
 {
@@ -482,10 +482,10 @@ Lambda tạo sau khi upload audio chứ không nhận trực tiếp từ fronten
 }
 ```
 Sau đó chọn **Next**.
-![Lambda Transcribe policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.37.png)
+![Lambda Transcribe policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.37.png)
 
 5. Đặt tên policy là `polly-voice-transcribe-access`.
-![Lambda Transcribe policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.36.png)
+![Lambda Transcribe policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.36.png)
 ### 8.2. Cấu hình biến môi trường
 
 Trong Lambda → **Configuration** → **Environment variables** -> **Edit**, sau đó thêm các biến môi trường:
@@ -493,7 +493,7 @@ Trong Lambda → **Configuration** → **Environment variables** -> **Edit**, sa
 | Tên biến | Giá trị ví dụ | Ý nghĩa |
 |---|---|---|
 | `AWS_TRANSCRIBE_LANGUAGE_CODE` | `en-US` | Ngôn ngữ mặc định |
-![Lambda environment variables](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.38.png)
+![Lambda environment variables](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.38.png)
 
 
 ### 8.3. Bổ sung mã kết nối Transcribe
@@ -666,7 +666,7 @@ if (body.action === "GET_TRANSCRIPTION_STATUS") {
 s3://polly-voice-media-<account-id>-eu-north-1/transcripts/polly-voice-transcribe-test.json
 ```
 
-![Kết quả kết nối Amazon Transcribe](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.36.png)
+![Kết quả kết nối Amazon Transcribe](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.36.png)
 
 {{% notice info %}}
 Transcribe không phải Amazon Translate. Transcribe chuyển giọng nói thành văn
@@ -682,25 +682,26 @@ Dự án sử dụng **HTTP API**, không phải REST API.
 
 1. Mở [Amazon API Gateway](https://eu-north-1.console.aws.amazon.com/apigateway/home?region=eu-north-1#/apis). Sau đó chọn **Create API**.
 
-![API Gateway create API](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.39.png)
+![API Gateway create API](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.39.png)
 2. Tại **HTTP API**, chọn **Build**.
-![API Gateway HTTP API build](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.40.png)
+![API Gateway HTTP API build](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.40.png)
 3. Đặt tên API name: `polly-voice-http-api-dev`.
-![API Gateway HTTP API name](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.41.png)
+![API Gateway HTTP API name](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.41.png)
 4. Trong **Integrations**, chọn **Add integration** và chọn **Lambda** và chọn **Lambda function**.
 5. Sau đó chọn **Next** tạo stage `$default` và bật **Auto-deploy**.
-![API Gateway HTTP API stage](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.42.png)
+![API Gateway HTTP API stage](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.42.png)
 6. Tạo hai route proxy bằng cách chọn **Create** trong hộp **Routes**. Nhập:
    - `ANY /`
    - `ANY /{proxy+}`
-![API Gateway HTTP API routes](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.44.png)
-![API Gateway HTTP API routes](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.45.png)
-![API Gateway HTTP API routes](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.46.png)
+![API Gateway HTTP API routes](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.44.png)
+![API Gateway HTTP API routes](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.45.png)
+![API Gateway HTTP API routes](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.46.png)
 7. Chọn vào tabs **CORS**, và chọn vào **Config** cấu hình:
    - Allowed origins: `http://localhost:5173` và domain Amplify.
    - Allowed methods: `GET`, `POST`, `DELETE`, `OPTIONS`.
    - Allowed headers: `Authorization`, `Content-Type`, `X-User-Id`.
    - Exposed headers: `Content-Disposition`.
-![API Gateway HTTP API CORS](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.47.png)
+![API Gateway HTTP API CORS](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.47.png)
 Hai route proxy chuyển toàn bộ endpoint `/health` và `/api/v1/*` cho Express
 router trong Lambda xử lý; không cần hard-code từng route trên API Gateway.
+

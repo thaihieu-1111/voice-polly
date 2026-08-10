@@ -1,4 +1,4 @@
----
+﻿---
 title: "Triển khai Backend bằng AWS SAM"
 date: 2026-07-30
 weight: 2
@@ -25,7 +25,7 @@ Account ID phải là tài khoản dùng cho workshop và region phải là:
 eu-north-1
 ```
 
-![Verify AWS identity](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/01-aws-identity.png)
+![Verify AWS identity](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/01-aws-identity.png)
 
 {{% notice warning %}}
 Không tiếp tục deploy nếu `aws sts get-caller-identity` trả về tài khoản cũ hoặc
@@ -44,7 +44,7 @@ npm test
 `npm ci` sử dụng `package-lock.json` để tạo dependency tree có thể lặp lại.
 Typecheck và test được thực hiện trước khi đóng gói Lambda.
 
-![Backend checks succeeded](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/03-backend-checks.png)
+![Backend checks succeeded](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/03-backend-checks.png)
 
 3. Kiểm tra SAM template:
 
@@ -62,7 +62,7 @@ sam validate
 - IAM policy cho Polly, Transcribe, S3 và DynamoDB.
 - CloudWatch Logs và X-Ray tracing.
 
-![SAM validation succeeded](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/04-sam-validate.png)
+![SAM validation succeeded](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/04-sam-validate.png)
 
 4. Build Lambda package:
 
@@ -82,7 +82,7 @@ Build thành công tạo artifact trong:
 backend/.aws-sam/build/
 ```
 
-![SAM build succeeded](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/05-sam-build.png)
+![SAM build succeeded](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/05-sam-build.png)
 
 5. Chuẩn bị các parameter cần thiết:
 
@@ -100,7 +100,7 @@ backend/.aws-sam/build/
 Tên S3 bucket phải duy nhất trên toàn cầu. Việc thêm Account ID giúp giảm khả
 năng trùng tên.
 
-![Backend deployment parameters](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/06-deployment-parameters.png)
+![Backend deployment parameters](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/06-deployment-parameters.png)
 
 6. Cấu hình trực tiếp tham số triển khai vào file `samconfig.toml`:
 
@@ -122,7 +122,7 @@ parameter_overrides = "MediaBucketName=\"polly-voice-media-<ACCOUNT_ID>-eu-north
 region = "eu-north-1"
 ```
 
-![Cloud](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/1.image)
+![Cloud](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/1.image)
 
 7. Thực hiện triển khai Backend:
 
@@ -156,8 +156,8 @@ FunctionName
 MediaBucket
 HistoryTable
 ```
-![CloudFormation change set](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/08-change-set.png)
-![CloudFormation change set](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/2.png)
+![CloudFormation change set](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/08-change-set.png)
+![CloudFormation change set](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/2.png)
 9. Ghi lại `ApiUrl` trong:
 
 ```text
@@ -179,7 +179,7 @@ Frontend sử dụng:
 https://<API_ID>.execute-api.eu-north-1.amazonaws.com/api/v1
 ```
 
-![CloudFormation outputs](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/11-cloudformation-outputs.png)
+![CloudFormation outputs](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/11-cloudformation-outputs.png)
 
 ## Quyền để Lambda gọi các dịch vụ AWS
 
@@ -212,3 +212,4 @@ Backend đã được triển khai dưới dạng CloudFormation stack. API Gate
 Lambda, private S3 bucket và DynamoDB table được tạo tại `eu-north-1`. Outputs
 của stack cung cấp các giá trị cần thiết để kiểm tra backend và kết nối
 frontend.
+

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Deploy the Backend with AWS SAM"
 date: 2026-07-30
 weight: 2
@@ -27,7 +27,7 @@ The Account ID must match the workshop account and the region must be:
 eu-north-1
 ```
 
-![Verify AWS identity](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/01-aws-identity.png)
+![Verify AWS identity](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/01-aws-identity.png)
 
 2. Install the dependencies and verify the source:
 
@@ -41,7 +41,7 @@ npm test
 `npm ci` uses `package-lock.json` to create a reproducible dependency tree.
 Type checking and tests run before the Lambda package is created.
 
-![Backend checks succeeded](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/03-backend-checks.png)
+![Backend checks succeeded](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/03-backend-checks.png)
 
 3. Validate the SAM template:
 
@@ -59,7 +59,7 @@ sam validate
 - IAM policies for Polly, Transcribe, S3, and DynamoDB.
 - CloudWatch Logs and X-Ray tracing.
 
-![SAM validation succeeded](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/04-sam-validate.png)
+![SAM validation succeeded](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/04-sam-validate.png)
 
 4. Build the Lambda package:
 
@@ -79,7 +79,7 @@ A successful build creates artifacts under:
 backend/.aws-sam/build/
 ```
 
-![SAM build succeeded](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/05-sam-build.png)
+![SAM build succeeded](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/05-sam-build.png)
 
 {{% notice info %}}
 If SAM cannot find esbuild, run `npm install` in the backend directory and
@@ -108,7 +108,7 @@ OneDrive directory when necessary, and run `sam build --no-cached` again.
 An S3 bucket name must be globally unique. Adding the AWS Account ID reduces the
 chance of a naming conflict.
 
-![Backend deployment parameters](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/06-deployment-parameters.png)
+![Backend deployment parameters](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/06-deployment-parameters.png)
 
 6. Configure deployment parameters directly in `samconfig.toml`:
 
@@ -148,7 +148,7 @@ AWS::DynamoDB::Table
 AWS::IAM::Role
 ```
 
-![CloudFormation change set](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/08-change-set.png)
+![CloudFormation change set](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/08-change-set.png)
 
 8. Wait for CloudFormation to complete. The stack must reach:
 
@@ -165,9 +165,9 @@ MediaBucket
 HistoryTable
 ```
 
-![SAM deployment completed](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/09-deployment-complete.png)
+![SAM deployment completed](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/09-deployment-complete.png)
 
-![CloudFormation stack](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/10-cloudformation-stack.png)
+![CloudFormation stack](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/10-cloudformation-stack.png)
 
 9. Record `ApiUrl` from:
 
@@ -190,7 +190,7 @@ The frontend uses:
 https://<API_ID>.execute-api.eu-north-1.amazonaws.com/api/v1
 ```
 
-![CloudFormation outputs](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/11-cloudformation-outputs.png)
+![CloudFormation outputs](/images/5-Workshop/5.3-DeployBackend/5.3.2-sam/11-cloudformation-outputs.png)
 
 ## Permissions for Lambda to call AWS services
 
@@ -223,3 +223,4 @@ The backend is now deployed as a CloudFormation stack. API Gateway HTTP API,
 Lambda, a private S3 bucket, and a DynamoDB table have been created in
 `eu-north-1`. The stack Outputs provide the values required to test the backend
 and connect the frontend.
+

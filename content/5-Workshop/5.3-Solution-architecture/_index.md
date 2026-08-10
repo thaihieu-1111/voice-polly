@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = '5.3 Solution Architecture'
 weight = 3
 
@@ -35,7 +35,7 @@ User authentication is handled by **Amazon Cognito** before requests are allowed
 
 > **Architecture Diagram:** Polly Voice Solution Architecture
 
-![Architecture Diagram](https://super-chickens-aws.github.io/dinhhhiuu/images/worklog53.png)
+![Architecture Diagram](/images/worklog53.png)
 
 ---
 
@@ -313,3 +313,4 @@ This architecture is well suited for small to medium-sized cloud-native applicat
 At this point, we have gained an understanding of the overall system architecture, the role of each AWS service, and the two primary processing workflows of the application: **Text-to-Speech** using **Amazon Polly** and **Speech-to-Text** using **Amazon Transcribe**.
 
 In the next section, we will begin deploying the backend by configuring Amazon Cognito in the AWS Management Console.
+

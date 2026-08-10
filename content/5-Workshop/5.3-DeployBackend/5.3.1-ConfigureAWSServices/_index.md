@@ -1,4 +1,4 @@
----
+﻿---
 title: "Configure AWS Services for the Backend"
 date: 2026-07-30
 weight: 1
@@ -34,9 +34,9 @@ resources: either temporary Console resources or the SAM/CloudFormation stack.
 4. Under **Configuration → General configuration**, set memory to `1024 MB` and
    timeout to `60 seconds`.
 
-![Create Lambda function](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/createfunction.png)
+![Create Lambda function](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/createfunction.png)
 
-![Lambda author from scratch](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.2.png)
+![Lambda author from scratch](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.2.png)
 
 ## 2. Create the S3 media bucket
 
@@ -56,13 +56,13 @@ The bucket stores TTS audio, STT input media, and transcription results. It must
 remain private; the backend returns presigned URLs when the frontend needs to
 upload or download an object.
 
-![Create S3 bucket](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.3.png)
+![Create S3 bucket](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.3.png)
 
-![S3 bucket configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.4.png)
+![S3 bucket configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.4.png)
 
-![Bucket versioning](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.5.png)
+![Bucket versioning](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.5.png)
 
-![S3 bucket encryption](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.6.png)
+![S3 bucket encryption](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.6.png)
 
 ## 3. Configure an S3 trigger for Lambda
 
@@ -78,9 +78,9 @@ API-driven architecture, the trigger is optional; prefer API Gateway for TTS and
 use a dedicated worker or a restricted prefix for asynchronous STT processing.
 {{% /notice %}}
 
-![Add S3 trigger](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.10.png)
+![Add S3 trigger](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.10.png)
 
-![S3 trigger configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.12.png)
+![S3 trigger configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.12.png)
 
 ## 4. Create an IAM policy for Lambda
 
@@ -111,9 +111,9 @@ use a dedicated worker or a restricted prefix for asynchronous STT processing.
 The execution role supplies temporary credentials to the AWS SDK. Do not store
 an access key or secret access key in Lambda code or environment variables.
 
-![Lambda execution role](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.1.3.13.png)
+![Lambda execution role](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.1.3.13.png)
 
-![S3 IAM policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.20.png)
+![S3 IAM policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.20.png)
 
 ## 5. Create the DynamoDB history table
 
@@ -143,11 +143,11 @@ an access key or secret access key in Lambda code or environment variables.
 DynamoDB stores metadata and history. Audio and video bytes remain in S3; the
 table stores only the S3 object key and related properties.
 
-![DynamoDB table configuration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.8.png)
+![DynamoDB table configuration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.8.png)
 
-![DynamoDB table settings](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.9.png)
+![DynamoDB table settings](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.9.png)
 
-![DynamoDB index](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.23.png)
+![DynamoDB index](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.23.png)
 
 ## 6. Configure Lambda to write to DynamoDB
 
@@ -181,7 +181,7 @@ table stores only the S3 object key and related properties.
 
 4. Name the policy `polly-voice-dynamodb-access`.
 
-![DynamoDB IAM policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.27.png)
+![DynamoDB IAM policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.27.png)
 
 ### 6.2. Configure environment variables
 
@@ -195,7 +195,7 @@ Open **Lambda → Configuration → Environment variables → Edit** and add:
 
 Do not create `AWS_REGION`; it is a reserved variable supplied by Lambda.
 
-![Lambda environment variables](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.28.png)
+![Lambda environment variables](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.28.png)
 
 ### 6.3. Add the Lambda code
 
@@ -267,7 +267,7 @@ Copy only the content inside a Markdown code block. Do not copy the word
 `javascript` or the three backticks into `index.mjs`.
 {{% /notice %}}
 
-![Lambda code editor](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.31.png)
+![Lambda code editor](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.31.png)
 
 ## 7. Connect Lambda to Amazon Polly
 
@@ -292,7 +292,7 @@ role:
 }
 ```
 
-![Amazon Polly policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.34.png)
+![Amazon Polly policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.34.png)
 
 ### 7.2. Add the Polly integration
 
@@ -341,7 +341,7 @@ await s3.send(new PutObjectCommand({
 }));
 ```
 
-![Deploy Polly integration](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.35.png)
+![Deploy Polly integration](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.35.png)
 
 ## 8. Connect Lambda to Amazon Transcribe
 
@@ -366,7 +366,7 @@ Create an inline policy named `polly-voice-transcribe-access`:
 }
 ```
 
-![Amazon Transcribe policy](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.37.png)
+![Amazon Transcribe policy](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.37.png)
 
 ### 8.2. Configure environment variables
 
@@ -376,7 +376,7 @@ Add:
 |---|---|---|
 | `AWS_TRANSCRIBE_LANGUAGE_CODE` | `en-US` | Default transcription language |
 
-![Transcribe environment variable](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.38.png)
+![Transcribe environment variable](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.38.png)
 
 ### 8.3. Add the Transcribe integration
 
@@ -419,7 +419,7 @@ finishes.
 3. Open **Amazon Transcribe → Transcription jobs**.
 4. Confirm that the output JSON appears under `transcripts/` in S3.
 
-![Transcribe connection result](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.36.png)
+![Transcribe connection result](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.36.png)
 
 {{% notice info %}}
 Amazon Transcribe converts speech into text. Amazon Translate is a different
@@ -455,13 +455,14 @@ ANY /{proxy+}
 The two proxy routes forward `/health` and `/api/v1/*` to the Express router in
 Lambda; individual Express routes do not need to be recreated in API Gateway.
 
-![Create API Gateway HTTP API](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.39.png)
+![Create API Gateway HTTP API](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.39.png)
 
-![HTTP API stage](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.42.png)
+![HTTP API stage](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.42.png)
 
-![HTTP API routes](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.46.png)
+![HTTP API routes](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.46.png)
 
-![HTTP API CORS](https://hieuthaihcmut.github.io/fcj-workshop-template/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.47.png)
+![HTTP API CORS](/images/5-Workshop/5.3-DeployBackend/5.3.1-services/5.3.1.47.png)
 
 After these services are prepared, continue to **5.3.2 – Deploy the Backend with
 AWS SAM**.
+
